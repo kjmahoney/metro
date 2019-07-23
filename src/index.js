@@ -1,5 +1,7 @@
 import fetch from 'node-fetch';
-import { blinkLight } from './lights';
+// import { blinkLight } from './lights';
+var five = require("johnny-five");
+var board = new five.Board();
 
 // This is a publicly available key: https://developer.wmata.com/demokey
 // Docs here https://developer.wmata.com/docs/services/547636a6f9182302184cda78/operations/547636a6f918230da855363f
@@ -46,4 +48,34 @@ const handleDisplay = async () => {
     }
 }
 
-handleDisplay();
+
+
+const blinkItTest = (led) => {
+    led.blink(1000);
+}
+
+let red = false
+const blinkIt = () => {
+    var ledRed = new five.Led(13)
+    var ledGreen = new five.Led(12)
+
+    if (red == true ) {
+        ledGreen.stop()
+        ledGreen.off()
+        ledRed.blink(1000)
+    } else {
+        ledRed.stop()
+        ledGreen.blink(1000)
+        red = true
+    } 
+}
+
+board.on("ready", function() {
+
+    setInterval(() => {
+            blinkIt()
+    }, 6000)
+})
+
+
+
