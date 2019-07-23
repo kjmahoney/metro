@@ -36,22 +36,14 @@ const handleDisplay = async () => {
     trains.forEach((train) => {
         minutesArray.push(train.Min)
     })
-
-    const testArray = [6, 9, 12]
-
-    console.log(minutesArray)
-    console.log(minutesArray.some(shouldHurry))
-    if (testArray.some(shouldHurry)) {
+  
+    if (minutesArray.some(shouldHurry)) {
         blinkLight(13);
-    } else if (testArray.some(shouldLeave)) {
+    } else if (minutesArray.some(shouldLeave)) {
         blinkLight(12);
     }else {
-        console.log('nothing')
         return 
     }
 }
 
-setInterval( () => {
-    console.log('checking trains')
-    handleDisplay();
-}, 6000)
+handleDisplay();

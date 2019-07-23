@@ -7,8 +7,8 @@ var board = new five.Board();
 // })
 
 export const blinkLight = (pin) => {
-    board.on("ready", function() {
-        console.log(pin)
+    console.log('blink here')
+   board.on("ready", function() {
         var led = new five.Led(pin);
         led.blink(1000);
     })
